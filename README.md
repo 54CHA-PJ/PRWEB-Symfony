@@ -44,6 +44,13 @@ php bin/console doctrine:mapping:info
 php bin/console doctrine:schema:update --force
 ```
 
+### Make Migration
+```bash
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+php bin/console doctrine:migrations:diff
+```
+
 ------------------------------------------------
 # DATA
 
