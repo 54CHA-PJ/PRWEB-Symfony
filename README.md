@@ -1,5 +1,5 @@
 ------------------------------------------------
-# INIT
+# SETUP
 
 ### Composer app
 ```bash
@@ -19,10 +19,19 @@ composer install
 ------------------------------------------------
 # SERVER
 
-### Symfony setup
+### INFO
 ```bash
 symfony local:check:requirements
 php bin/console about
+```
+
+### Check if the connection with the database is working
+```bash
+php bin/console app:database:test
+```
+
+### Symfony INIT
+```bash
 symfony server:start
 ```
 
@@ -34,18 +43,14 @@ php bin/console cache:clear
 ------------------------------------------------
 # DATABASE
 
-### check if the connection with the database is working
-```bash
-php bin/console app:database:test
-```
-
-### map info
+### Map info
 ```bash
 php bin/console doctrine:mapping:info
 ```
 
-### Update database
+### Create/Update database
 ```bash
+php bin/console doctrine:schema:create
 php bin/console doctrine:schema:update --force
 ```
 
@@ -54,6 +59,24 @@ php bin/console doctrine:schema:update --force
 php bin/console make:migration
 php bin/console doctrine:migrations:migrate
 php bin/console doctrine:migrations:diff
+```
+
+### Drop database
+```bash
+php bin/console doctrine:database:drop --force
+php bin/console doctrine:database:create
+```
+
+### Load fixtures
+```bash
+php bin/console doctrine:fixtures:load
+```
+
+### Restart ID's
+```SQL
+ALTER SEQUENCE person_id_seq RESTART WITH 1;
+ALTER SEQUENCE book_id_seq RESTART WITH 1;
+ALTER SEQUENCE borrow_id_seq RESTART WITH 1;
 ```
 
 ------------------------------------------------
@@ -69,9 +92,16 @@ php bin/console make:user
 php bin/console make:entity NameOfEntity
 ```
 
-### Restart ID's
-```SQL
-ALTER SEQUENCE person_id_seq RESTART WITH 1;
-ALTER SEQUENCE book_id_seq RESTART WITH 1;
-ALTER SEQUENCE borrow_id_seq RESTART WITH 1;
+### Create controller
+```bash
+php bin/console make:crud Entity
+```
+
+------------------------------------------------
+
+# Controller
+
+### Routes
+```php
+php bin/console debug:router
 ```

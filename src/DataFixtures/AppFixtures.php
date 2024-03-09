@@ -14,9 +14,9 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $people = [
-            ['Elon', 'Musk', 'elon.musk@example.com', '1971-06-28'],
-            ['Mark', 'Zuckerberg', 'mark.zuckerberg@example.com', '1984-05-14'],
-            ['Bill', 'Gates', 'bill.gates@example.com', '1955-10-28']
+            ['Elon', 'Musk', 'elon.musk@tesla.com', '1971-06-28'],
+            ['Mark', 'Zuckerberg', 'mark.zuckerberg@facebook.com', '1984-05-14'],
+            ['Bill', 'Gates', 'bill.gates@microsoft.com', '1955-10-28']
         ];
 
         $books = [
@@ -36,13 +36,13 @@ class AppFixtures extends Fixture
 
         foreach ($people as $index => $aPerson) {
             $aDate = \DateTime::createFromFormat('Y-m-d', $aPerson[3]);
-            $person = new Person(); // Create object
+            $person = new Person();
             $person->setPersonFirstname($aPerson[0]);
             $person->setPersonLastname($aPerson[1]);
-            $person->setPersonEmail($aPerson[2]); // Set email
+            $person->setPersonEmail($aPerson[2]); 
             $person->setPersonBirthdate($aDate);
-            $manager->persist($person); // save object to database
-            $people[$index]['object'] = $person; // Keep created object for future use
+            $manager->persist($person); 
+            $people[$index]['object'] = $person; 
         }
 
         foreach ($books as $index => $aBook) {
