@@ -27,25 +27,6 @@ symfony server:start
 ```
 
 ------------------------------------------------
-# COMPOSER
-
-### Reset Composer
-```bash
-del composer.lock
-rmdir /s /q vendor
-composer update
-```
-
-### Requirements
-```bash
-composer require symfony/runtime
-```	
-
-### MakeBlunder
-```bash
-```
-
-------------------------------------------------
 # DATABASE
 
 ### check if the connection with the database is working
@@ -58,13 +39,20 @@ php bin/console app:database:test
 php bin/console doctrine:mapping:info
 ```
 
-### Generate entities (TP PRWEB) : NOT WORKING on 6.x.x
+### Update database
 ```bash
-php bin/console doctrine:mapping:import "App\Entity" annotation --path=src/Entity
-``` 
+php bin/console doctrine:schema:update --force
+```
 
-### Alternative 
+------------------------------------------------
+# DATA
+
+### Create user
 ```bash
-php bin/console doctrine:mapping:convert xml ./config/doctrine --from-database --force
-php bin/console doctrine:generate:entities ./src/Entity
+php bin/console make:user
+```
+
+### Create entity
+```bash
+php bin/console make:entity NameOfEntity
 ```
