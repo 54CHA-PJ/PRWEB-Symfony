@@ -10,55 +10,40 @@ class Book
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: "integer")]
+    private ?int $book_id = null;
 
-    #[ORM\Column]
-    private ?int $bookId = null;
+    #[ORM\Column(type: "string", length: 255)]
+    private ?string $book_title = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $bookTitle = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $bookAuthors = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    #[ORM\Column(type: "string", length: 255)]
+    private ?string $book_author = null;
 
     public function getBookId(): ?int
     {
-        return $this->bookId;
-    }
-
-    public function setBookId(int $bookId): static
-    {
-        $this->bookId = $bookId;
-
-        return $this;
+        return $this->book_id;
     }
 
     public function getBookTitle(): ?string
     {
-        return $this->bookTitle;
+        return $this->book_title;
     }
 
-    public function setBookTitle(string $bookTitle): static
+    public function setBookTitle(string $book_title): self
     {
-        $this->bookTitle = $bookTitle;
+        $this->book_title = $book_title;
 
         return $this;
     }
 
-    public function getBookAuthors(): ?string
+    public function getBookAuthor(): ?string
     {
-        return $this->bookAuthors;
+        return $this->book_author;
     }
 
-    public function setBookAuthors(string $bookAuthors): static
+    public function setBookAuthor(string $book_author): self
     {
-        $this->bookAuthors = $bookAuthors;
+        $this->book_author = $book_author;
 
         return $this;
     }

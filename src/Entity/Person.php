@@ -1,28 +1,29 @@
 <?php
 
 namespace App\Entity;
-
-use App\Repository\PersonRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Borrow;
+use Doctrine\Common\Collections\ArrayCollection; 
 
 #[ORM\Entity(repositoryClass: PersonRepository::class)]
 class Person
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: "integer")]
+    private ?int $person_id = null;
 
-    #[ORM\Column]
-    private ?int $personId = null;
+    #[ORM\Column(type: "string", length: 255)]
+    private ?string $person_firstname = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $personName = null;
+    #[ORM\Column(type: "string", length: 255)]
+    private ?string $person_lastname = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $personEmail = null;
+    #[ORM\Column(type: "string", length: 255)]
+    private ?string $person_email = null;
+
+    #[ORM\Column(type: "date")]
+    private ?\DateTimeInterface $person_birthdate = null;
 
     #[ORM\OneToMany(targetEntity: Borrow::class, mappedBy: "person")]
     private $borrows;
@@ -32,43 +33,55 @@ class Person
         $this->borrows = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getPersonId(): ?int
     {
-        return $this->personId;
+        return $this->person_id;
     }
 
-    public function setPersonId(int $personId): static
+    public function getPersonFirstname(): ?string
     {
-        $this->personId = $personId;
+        return $this->person_firstname;
+    }
+
+    public function setPersonFirstname(string $person_firstname): self
+    {
+        $this->person_firstname = $person_firstname;
 
         return $this;
     }
 
-    public function getPersonName(): ?string
+    public function getPersonLastname(): ?string
     {
-        return $this->personName;
+        return $this->person_lastname;
     }
 
-    public function setPersonName(string $personName): static
+    public function setPersonLastname(string $person_lastname): self
     {
-        $this->personName = $personName;
+        $this->person_lastname = $person_lastname;
 
         return $this;
     }
 
     public function getPersonEmail(): ?string
     {
-        return $this->personEmail;
+        return $this->person_email;
     }
 
-    public function setPersonEmail(string $personEmail): static
+    public function setPersonEmail(string $person_email): self
     {
-        $this->personEmail = $personEmail;
+        $this->person_email = $person_email;
+
+        return $this;
+    }
+
+    public function getPersonBirthdate(): ?\DateTimeInterface
+    {
+        return $this->person_birthdate;
+    }
+
+    public function setPersonBirthdate(\DateTimeInterface $person_birthdate): self
+    {
+        $this->person_birthdate = $person_birthdate;
 
         return $this;
     }

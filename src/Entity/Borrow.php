@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Person;
+use App\Entity\Book;
+
 use App\Repository\BorrowRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,39 +13,31 @@ class Borrow
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column]
-    private ?int $borrowId = null;
+    #[ORM\Column(type: "integer")]
+    private ?int $borrow_id = null;
 
     #[ORM\ManyToOne(targetEntity: Person::class, inversedBy: "borrows")]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: "person_id", referencedColumnName: "person_id", nullable: false)]
     private $person;
 
     #[ORM\ManyToOne(targetEntity: Book::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: "book_id", referencedColumnName: "book_id", nullable: false)]
     private $book;
 
     #[ORM\Column(type: "datetime")]
-    private $borrowDate;
+    private $borrow_date;
 
     #[ORM\Column(type: "datetime", nullable: true)]
-    private $returnDate;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    private $return_date;
 
     public function getBorrowId(): ?int
     {
-        return $this->borrowId;
+        return $this->borrow_id;
     }
 
-    public function setBorrowId(int $borrowId): static
+    public function setBorrowId(int $borrow_id): static
     {
-        $this->borrowId = $borrowId;
+        $this->borrow_id = $borrow_id;
 
         return $this;
     }
@@ -73,24 +68,24 @@ class Borrow
 
     public function getBorrowDate(): ?\DateTimeInterface
     {
-        return $this->borrowDate;
+        return $this->borrow_date;
     }
 
-    public function setBorrowDate(\DateTimeInterface $borrowDate): self
+    public function setBorrowDate(\DateTimeInterface $borrow_date): self
     {
-        $this->borrowDate = $borrowDate;
+        $this->borrow_date = $borrow_date;
 
         return $this;
     }
 
     public function getReturnDate(): ?\DateTimeInterface
     {
-        return $this->returnDate;
+        return $this->return_date;
     }
 
-    public function setReturnDate(?\DateTimeInterface $returnDate): self
+    public function setReturnDate(?\DateTimeInterface $return_date): self
     {
-        $this->returnDate = $returnDate;
+        $this->return_date = $return_date;
 
         return $this;
     }

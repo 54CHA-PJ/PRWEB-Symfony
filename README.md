@@ -26,6 +26,11 @@ php bin/console about
 symfony server:start
 ```
 
+### Cache
+```bash
+php bin/console cache:clear
+```
+
 ------------------------------------------------
 # DATABASE
 
@@ -62,4 +67,11 @@ php bin/console make:user
 ### Create entity
 ```bash
 php bin/console make:entity NameOfEntity
+```
+
+### Restart ID's
+```SQL
+ALTER SEQUENCE person_id_seq RESTART WITH 1;
+ALTER SEQUENCE book_id_seq RESTART WITH 1;
+ALTER SEQUENCE borrow_id_seq RESTART WITH 1;
 ```
